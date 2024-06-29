@@ -5,7 +5,7 @@ const PlayList = () => {
   return (
     <div>
       <PlayListImg img="https://placehold.co/184x184"></PlayListImg>
-      <PlayListSubTitle></PlayListSubTitle>
+      <PlayListSubTitle subTitle="Sub title"></PlayListSubTitle>
       <PlayListTitle></PlayListTitle>
     </div>
   );
