@@ -1,7 +1,9 @@
-const PlayListTitle = () => {
+// read-only
+
+const PlayListTitle = (props) => {
   return (
     <div>
-      <h4>Ballad Việt được remix đầy</h4>
+      {props.children}
     </div>
   );
 };
@@ -13,8 +15,5 @@ const PlayListSubTitle = (props) => {
     </div>
   );
 };
-
-
-
 
 export { PlayListTitle, PlayListSubTitle };

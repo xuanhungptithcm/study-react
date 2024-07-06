@@ -6,7 +6,17 @@ const PlayList = () => {
     <div>
       <PlayListImg img="https://placehold.co/184x184"></PlayListImg>
       <PlayListSubTitle subTitle="Sub title"></PlayListSubTitle>
-      <PlayListTitle></PlayListTitle>
+      <PlayListTitle>
+        <h4
+          style={{
+            color: "red",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          [PlayListTitle]Ballad Việt được remix đầy
+        </h4>
+      </PlayListTitle>
     </div>
   );
 };
