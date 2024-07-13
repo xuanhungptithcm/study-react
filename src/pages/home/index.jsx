@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Counter from "../../components/counter/idnex";
 import Example from "../../components/example";
 import BarChartSvg from "../../components/icons/BarchartSvg";
@@ -50,22 +50,50 @@ const listProject = [
   },
 ];
 
+// useState
+// 1. initial state
+// 2. function to update state
+
+// useReducer
+// 1. initial state
+// 2. reducer function
+// 3. dispatch
+// 4. action
+
+const INIT_STATE = 0;
+const reducerCount = (state, action) => {
+  switch (action.type) {
+    case "INCREASE":
+      return state + action.payload;
+    case "DECREASE":
+      return state - action.payload;
+    case "Nhan":
+      return state * 2;
+    case "Chia":
+      return state / 2;
+    case "BinhPhuong":
+      return state * state;
+    default:
+      throw new Error("Invalid Action");
+  }
+};
+
 function Home() {
   console.log("=================Render=================");
-  const [count, setCount] = useState(0);
+
+  const [countS, dispatch] = useReducer(reducerCount, INIT_STATE);
 
   const increaseCount = (count) => {
-    setCount((prev) => prev + count);
+    dispatch({ type: "INCREASE", payload: count });
   };
   const decreaseCount = (count) => {
-    setCount(prev => prev - count);
+    dispatch({ type: "DECREASE", payload: count });
   };
-
   return (
     <div className="min-h-screen w-[100vw] flex items-center justify-center flex-col">
       {/* <ProjectList list={listProject} /> */}
       <Counter
-        count={count}
+        count={countS}
         increaseCount={increaseCount}
         decreaseCount={decreaseCount}
       />
