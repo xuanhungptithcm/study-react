@@ -1,7 +1,7 @@
 import ProjectDate from "./ProjectDate";
 import ProjectImage from "./ProjectImage";
 import ProjectSubTitle from "./ProjectSubTitle";
-import ProjectTag from "./ProjectTag";
+import ProjectTag, { DefaultIconSvg, ProjectTag2 } from "./ProjectTag";
 import ProjectTitle from "./ProjectTitle";
 
 const Typography = ({ variant, children }) => {
@@ -39,13 +39,17 @@ const ProjectList = ({ list = [] }) => {
           <div key={index} className="flex gap-x-6 w-full justify-between px-6">
             <div className="left w-full flex-1">
               <div className="flex justify-between gap-x-4">
-                <ProjectTag tag={item.type} />
+                <div className="flex gap-x-3">
+                  <ProjectTag tag={item.type}>
+                    <span>{!item.icon ? <DefaultIconSvg /> : item.icon}</span>
+                  </ProjectTag>
+                  <ProjectTag2 tag={item.type} icon={item.icon} />
+                </div>
                 <ProjectDate date={item.date} />
               </div>
               <Typography variant="h2">{item.title}</Typography>
               <Typography variant="subtitle1">{item.description}</Typography>
             </div>
-
             <div className="right">
               <ProjectImage image={"https://placehold.co/184x184"} />
             </div>
