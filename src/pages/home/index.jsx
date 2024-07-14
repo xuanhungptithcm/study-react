@@ -1,9 +1,10 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Counter from "../../components/counter/idnex";
 import Example from "../../components/example";
 import BarChartSvg from "../../components/icons/BarchartSvg";
 import CameraSvg from "../../components/icons/CameraSvg";
 import ProjectList from "../../components/projects";
+import Pokemon from "../../components/pokemon";
 
 const listProject = [
   {
@@ -79,8 +80,7 @@ const reducerCount = (state, action) => {
 };
 
 function Home() {
-  console.log("=================Render=================");
-
+  const [isShowCounter, setIsShowCounter] = useState(false);
   const [countS, dispatch] = useReducer(reducerCount, INIT_STATE);
 
   const increaseCount = (count) => {
@@ -89,14 +89,39 @@ function Home() {
   const decreaseCount = (count) => {
     dispatch({ type: "DECREASE", payload: count });
   };
+
+  // useEffect(() => {
+  //   console.log("useEffect without dependency");
+  // });
+
+  // useEffect(() => {
+  //   console.log("useEffect with empty dependency");
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("useEffect with countS dependency");
+  // }
+  // , [countS]);
+
   return (
     <div className="min-h-screen w-[100vw] flex items-center justify-center flex-col">
       {/* <ProjectList list={listProject} /> */}
-      <Counter
-        count={countS}
-        increaseCount={increaseCount}
-        decreaseCount={decreaseCount}
-      />
+      <div className="flex flex-col items-center gap-y-4">
+        <button
+          className="bg-red-600 text-white"
+          onClick={() => setIsShowCounter((prev) => !prev)}
+        >
+          {!isShowCounter ? "Show" : "Hide"} counter
+        </button>
+        {isShowCounter && (
+          <Counter
+            count={countS}
+            increaseCount={increaseCount}
+            decreaseCount={decreaseCount}
+          />
+          // <Pokemon />
+        )}
+      </div>
     </div>
   );
 }
